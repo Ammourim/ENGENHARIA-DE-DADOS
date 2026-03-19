@@ -1,0 +1,21 @@
+﻿id_atendimento,paciente_nome,data_atendimento,setor,tempo_espera_min,diagnostico
+1,João Silva,2024-01-01 08:00,Emergência,25,Febre
+2,Maria Souza,2024-01-01 08:05,emergencia,40,Febre
+3,Pedro Santos,2024-01-01 08:10,Clínica,15,Dor
+4,,2024-01-01 08:15,Clínica,20,Gripe
+5,Ana Paula,2024-01-01 08:20,Emergência,9999,Gripe
+6,Carlos Lima,2024-01-01 08:25,Ortopedia,60,Fratura
+7,João Silva,2024-01-01 08:00,Emergência,25,Febre
+8,Mariana Alves,2024-01-01 08:30,Ortopedia,NaN,Fratura
+9,Rafael Costa,2024-01-01 08:35,Emergência,35,
+10,Fernanda Rocha,2024-01-01 08:40,Clinica,20,Dor
+11,Lucas Martins,2024-01-01 08:45,Emergência,300,Gripe
+12,Juliana Melo,2024-01-01 08:50,Emergência,-5,Febre
+13,Bruno Souza,2024-01-01 08:55,Ortopedia,45,Fratura
+14,Amanda Silva,2024-01-01 09:00,Emergência,NaN,Gripe
+15,Diego Alves,2024-01-01 09:05,Clínica,20,Dor
+16,,2024-01-01 09:10,Clínica,30,Gripe
+17,Patricia Gomes,2024-01-01 09:15,Ortopedia,5000,Fratura
+18,Ricardo Lima,2024-01-01 09:20,Emergência,50,Febre
+19,Sandra Costa,2024-01-01 09:25,emergência,45,Gripe
+20,Lucas Martins,2024-01-01 09:30,Emergência,300,Gripe
