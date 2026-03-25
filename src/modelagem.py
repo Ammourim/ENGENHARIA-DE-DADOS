@@ -36,3 +36,5 @@ print(df_atendimentos.head())
 
 # 4. volume
 print(len(df_pacientes), len(df_setores), len(df_atendimentos))
+# %%
+print(df_setores)

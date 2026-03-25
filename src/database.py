@@ -1,4 +1,5 @@
 import psycopg2
+from modelagem import df_pacientes, df_setores, df_atendimentos  # ou ajuste o import
 
 conn = psycopg2.connect(
     host="172.31.80.1",
@@ -45,6 +46,50 @@ CREATE TABLE IF NOT EXISTS atendimentos (
 conn.commit()
 
 print("Tabelas criadas com sucesso!")
+
+
+for _, row in df_pacientes.iterrows():
+    cursor.execute("""
+        INSERT INTO pacientes (id_paciente, paciente_nome)
+        VALUES (%s, %s)
+        ON CONFLICT (id_paciente) DO NOTHING
+    """, (row['id_paciente'], row['paciente_nome']))
+
+conn.commit()
+
+for _, row in df_setores.iterrows():
+    cursor.execute("""
+        INSERT INTO setores (id_setor, setor)
+        VALUES (%s, %s)
+        ON CONFLICT (id_setor) DO NOTHING
+    """, (row['id_setor'], row['setor']))
+
+conn.commit()
+
+for _, row in df_atendimentos.iterrows():
+    cursor.execute("""
+        INSERT INTO atendimentos (
+            id_atendimento,
+            id_paciente,
+            id_setor,
+            tempo_espera_min,
+            data_atendimento,
+            eh_outlier
+        )
+        VALUES (%s, %s, %s, %s, %s, %s)
+        ON CONFLICT (id_atendimento) DO NOTHING
+    """, (
+        row['id_atendimento'],
+        row['id_paciente'],
+        row['id_setor'],
+        row['tempo_espera_min'],
+        row['data_atendimento'],
+        row['eh_outlier']
+    ))
+
+conn.commit()
+
+print("Dados de pacientes, setores e atendimentos inseridos!")
 
 cursor.close()
 conn.close()
