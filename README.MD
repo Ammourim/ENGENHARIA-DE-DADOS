@@ -1,126 +1,117 @@
-# Projeto de Engenharia de Dados — Dados Hospitalares
+# 🏥 Pipeline de Dados — Atendimento Hospitalar
 
 ## Sobre o projeto
 
-Esse projeto foi criado com o objetivo de praticar conceitos fundamentais de engenharia de dados usando um cenário simples de atendimentos hospitalares.
+Esse projeto foi desenvolvido com o objetivo de simular, na prática, o trabalho de um engenheiro de dados em um cenário hospitalar.
 
-A ideia é simular um fluxo real:
-
-* dados brutos
-* limpeza
-* modelagem
-* armazenamento
-* (futuramente) pipeline automatizado
+A ideia foi pegar dados brutos de atendimentos, tratar, organizar e armazenar em um banco de dados, deixando tudo pronto para análise.
 
 ---
 
-## Estrutura do projeto
+## O que foi feito
 
+### 📥 Leitura dos dados
+
+Os dados foram lidos a partir de um arquivo CSV utilizando Python e Pandas.
+
+---
+
+### 🧹 Limpeza dos dados
+
+Nessa etapa, fiz alguns tratamentos importantes:
+
+* Remoção de valores nulos em colunas essenciais
+* Substituição de valores inválidos (ex: tempos negativos)
+* Padronização de textos (como nomes de setores)
+* Identificação de valores fora do padrão (outliers)
+* Criação de uma coluna (`eh_outlier`) para marcar esses casos
+
+---
+
+### 🧱 Modelagem
+
+Os dados foram organizados em três tabelas:
+
+* **pacientes**
+* **setores**
+* **atendimentos**
+
+A tabela de atendimentos faz ligação com as outras duas usando chaves estrangeiras, garantindo consistência.
+
+---
+
+### 🗄️ Banco de dados
+
+Utilizei PostgreSQL para armazenar os dados.
+
+* Criação das tabelas via Python
+* Uso de chave primária e estrangeira
+* Inserção dos dados com `psycopg2`
+* Tratamento de duplicidade com `ON CONFLICT`
+
+---
+
+### 🔍 Validação
+
+Depois de inserir os dados, fiz algumas verificações:
+
+* Conferência de nulos
+* Verificação de duplicidade
+* Checagem de integridade entre tabelas
+
+---
+
+### 📊 Análise com SQL
+
+Uma das análises feitas foi o tempo médio de espera por setor:
+
+```sql
+SELECT 
+    s.setor,
+    ROUND(AVG(a.tempo_espera_min), 2) AS tempo_medio
+FROM atendimentos a
+JOIN setores s ON a.id_setor = s.id_setor
+WHERE a.eh_outlier = false
+GROUP BY s.setor
+ORDER BY tempo_medio DESC;
 ```
-projeto-dados-hospital/
-│
-├── data/
-│   ├── raw/
-│   │   └── atendimentos.csv
-│
-├── src/
-│   ├── limpeza.py
-│   ├── modelagem.py
-│
-├── README.md
-└── pyproject.toml
-```
+
+**Resultado:**
+
+* Ortopedia → ~49 min
+* Emergência → ~40 min
+* Clínica → ~18 min
 
 ---
 
-## O que já foi feito
+## O que aprendi com esse projeto
 
-### 1. Limpeza de dados
-
-Foram tratados alguns problemas comuns:
-
-* valores nulos em campos obrigatórios
-* padronização de texto (ex: nomes de setores)
-* remoção de duplicados
-* tratamento de valores negativos
-* identificação de outliers
-
-Sobre os outliers:
-
-* não foram removidos
-* foi criada uma coluna `eh_outlier` para marcar esses casos
-
-A ideia foi manter o dado original e deixar a decisão para análise depois.
+* A importância de tratar dados antes de analisar
+* Como modelar dados de forma relacional
+* Como garantir consistência usando chaves estrangeiras
+* Que um pipeline funcionando não significa dados confiáveis
+* A importância de validar sempre os resultados
 
 ---
 
-### 2. Modelagem
+## Tecnologias utilizadas
 
-Os dados foram separados em:
-
-**Tabela fato (atendimentos)**
-Contém os eventos:
-
-* id_atendimento
-* id_paciente
-* id_setor
-* tempo_espera_min
-* data_atendimento
-* eh_outlier
-
-**Dimensão pacientes**
-
-* id_paciente
-* paciente_nome
-
-**Dimensão setores**
-
-* id_setor
-* setor
-
-Para isso:
-
-* removi duplicados para criar entidades únicas
-* gerei IDs
-* usei merge para relacionar os dados
-
----
-
-### 3. Validação
-
-Antes de seguir, validei:
-
-* ausência de valores nulos nas chaves
-* ausência de IDs duplicados
-* consistência dos dados
+* Python
+* Pandas
+* PostgreSQL
+* psycopg2
 
 ---
 
 ## Próximos passos
 
-* criar as tabelas no banco de dados
-* inserir os dados via Python
-* escrever queries SQL
-* montar um pipeline automatizado
+* Criar um dashboard para visualização dos dados
+* Melhorar a forma de inserção (sem usar `iterrows`)
+* Automatizar o pipeline
+* Testar integração com ferramentas de BI
 
 ---
 
-## Tecnologias
+## Objetivo
 
-* Python
-* Pandas
-* Poetry
-* (em breve) PostgreSQL
-
----
-
-## Observações
-
-Esse projeto é focado em aprendizado, então algumas decisões foram simplificadas.
-A ideia é evoluir ele aos poucos até chegar mais próximo de um cenário real.
-
----
-
-## Autor
-
-Alan Amorim
+Esse projeto foi feito com foco em aprendizado prático, simulando situações reais do dia a dia de um engenheiro de dados.
