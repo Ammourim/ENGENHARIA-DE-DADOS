@@ -1,15 +1,12 @@
+from sqlalchemy import create_engine
 import psycopg2
 from src.modelagem import df_pacientes, df_setores, df_atendimentos  # ou ajuste o import
 
 def conexao():
-    conn = psycopg2.connect(
-    host="localhost",
-    database="hospital",
-    user="postgres",
-    password="Ap200112.",
-    port="5433"
+    engine = create_engine(
+        "postgresql+psycopg2://postgres:Ap200112.@localhost:5433/hospital"
     )
-    return conn
+    return engine
 
 print("conectado com sucesso")
 
