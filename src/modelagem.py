@@ -1,6 +1,6 @@
 #%%
 import pandas
-from limpeza import df
+from src.limpeza import df
 #%%
 df_pacientes = df[['paciente_nome']].drop_duplicates().reset_index(drop=True)
 df_pacientes.insert(0, 'id_paciente', df_pacientes.index)

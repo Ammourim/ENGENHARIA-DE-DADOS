@@ -1,17 +1,19 @@
 import psycopg2
-from modelagem import df_pacientes, df_setores, df_atendimentos  # ou ajuste o import
+from src.modelagem import df_pacientes, df_setores, df_atendimentos  # ou ajuste o import
 
-conn = psycopg2.connect(
+def conexao():
+    conn = psycopg2.connect(
     host="172.31.80.1",
     database="hospital",
     user="postgres",
     password="Ap200112.",
     port="5433"
-)
+    )
+    return conn
 
 print("conectado com sucesso")
 
-cursor = conn.cursor()
+cursor = conexao().cursor()
 
 # Tabela pacientes
 cursor.execute("""
@@ -43,7 +45,7 @@ CREATE TABLE IF NOT EXISTS atendimentos (
 );
 """)
 
-conn.commit()
+conexao().commit()
 
 print("Tabelas criadas com sucesso!")
 
@@ -55,7 +57,7 @@ for _, row in df_pacientes.iterrows():
         ON CONFLICT (id_paciente) DO NOTHING
     """, (row['id_paciente'], row['paciente_nome']))
 
-conn.commit()
+conexao().commit()
 
 for _, row in df_setores.iterrows():
     cursor.execute("""
@@ -64,7 +66,7 @@ for _, row in df_setores.iterrows():
         ON CONFLICT (id_setor) DO NOTHING
     """, (row['id_setor'], row['setor']))
 
-conn.commit()
+conexao().commit()
 
 for _, row in df_atendimentos.iterrows():
     cursor.execute("""
@@ -87,9 +89,9 @@ for _, row in df_atendimentos.iterrows():
         row['eh_outlier']
     ))
 
-conn.commit()
+conexao().commit()
 
 print("Dados de pacientes, setores e atendimentos inseridos!")
 
 cursor.close()
-conn.close()
+conexao().close()
