@@ -39,20 +39,16 @@ Desenvolvimento de uma interface web para consumo dos dados:
 ---
 
 ## Visuais do Dashboard
+
+**Visão Geral e KPIs:**
 <img width="1920" height="698" alt="Image" src="https://github.com/user-attachments/assets/fa0257c4-24e3-410e-aaeb-0ff243e90b5a" />
 <img width="1920" height="907" alt="Image" src="https://github.com/user-attachments/assets/3bbc1e59-2976-4e40-b1e2-47595ed28cb0" />
 <img width="1920" height="914" alt="Image" src="https://github.com/user-attachments/assets/7a223ced-065b-4fb5-8cc8-26af5e8dd199" />
+
+**Análise de Tempo por Setor e Distribuição:**
 <img width="1920" height="912" alt="Image" src="https://github.com/user-attachments/assets/19c3e51e-7cd7-44ee-b9d7-9ecbc4f8e607" />
 <img width="1920" height="914" alt="Image" src="https://github.com/user-attachments/assets/6106ecb4-3480-4e20-964d-f59226f064e9" />
 <img width="1920" height="914" alt="Image" src="https://github.com/user-attachments/assets/be6f21a5-3aa6-4e51-b433-e7272f7a8175" />
-
-
-**Visão Geral e KPIs:**
-`[Insira sua imagem aqui]`
-
-**Análise de Tempo por Setor e Distribuição:**
-`[Insira sua imagem aqui]`
-
 ---
 
 ## O que aprendi com esse projeto
