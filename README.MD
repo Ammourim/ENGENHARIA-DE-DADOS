@@ -72,14 +72,6 @@ Desenvolvimento de uma interface web para consumo dos dados:
 
 ---
 
-## Próximos passos (Evolução do Projeto)
-
-* **Orquestração:** Automatizar o pipeline de ETL utilizando ferramentas como Apache Airflow ou Mage.ai.
-* **Containerização:** Colocar a aplicação e o banco de dados em containers Docker para facilitar a execução em qualquer máquina.
-* **Deploy Cloud:** Hospedar o banco de dados (ex: AWS RDS) e o Streamlit (Streamlit Cloud ou Render) para acesso público.
-
----
-
 ## Objetivo
 
 Esse projeto foi feito com foco em aprendizado prático, simulando situações reais do dia a dia de um engenheiro de dados, indo desde a extração do dado bruto até a entrega de valor visual para o usuário final.
