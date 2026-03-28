@@ -1,5 +1,4 @@
 import streamlit as st
-import psycopg2
 from src.database.connection import get_engine
 import pandas as pd
 import plotly.express as px

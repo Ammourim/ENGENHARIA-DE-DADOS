@@ -38,3 +38,14 @@ with engine.begin() as conn:
     """))
 
 print("Tabelas criadas com sucesso!")
+
+# -------------------------
+# INSERIR DADOS
+# -------------------------
+print("Inserindo dados nas tabelas...")
+
+df_pacientes.to_sql('pacientes', con=engine, if_exists='append', index=False)
+df_setores.to_sql('setores', con=engine, if_exists='append', index=False)
+df_atendimentos.to_sql('atendimentos', con=engine, if_exists='append', index=False)
+
+print("Dados inseridos com sucesso!")
