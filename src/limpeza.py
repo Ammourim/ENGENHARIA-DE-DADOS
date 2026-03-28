@@ -2,7 +2,7 @@
 import pandas as pd
 import unicodedata
 # importando csv 
-df = pd.read_csv('/home/alan/projetos/ENGENHARIA-DE-DADOS/data/raw/atendimentos.csv', 
+df = pd.read_csv('data/raw/atendimentos.csv', 
                  sep = ',', 
                  encoding='utf-8',
                  parse_dates=['data_atendimento'])

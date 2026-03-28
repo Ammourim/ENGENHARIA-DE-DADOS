@@ -3,7 +3,7 @@ from src.modelagem import df_pacientes, df_setores, df_atendimentos  # ou ajuste
 
 def conexao():
     conn = psycopg2.connect(
-    host="172.31.80.1",
+    host="localhost",
     database="hospital",
     user="postgres",
     password="Ap200112.",
